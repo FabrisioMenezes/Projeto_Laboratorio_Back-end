@@ -15,7 +15,7 @@ import unit.grupo3.Biolab.repository.ResearcherRepository;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/researcher")
+@RequestMapping("/researchers")
 public class ResearcherController {
 
     @Autowired
