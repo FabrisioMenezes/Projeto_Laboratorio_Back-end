@@ -12,7 +12,7 @@ Samira caduda.
 
 ~~~CSS
 Gradle Project 
-Java 11 
+Java 8 
 Spring boot 2.5.4
 ~~~
 
