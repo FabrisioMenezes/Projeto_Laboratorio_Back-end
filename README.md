@@ -5,7 +5,6 @@
 ~~~CSS
 Artur Silva,
 Ismael Teles,
-Samira caduda.
 ~~~
 
 #### Documentação
