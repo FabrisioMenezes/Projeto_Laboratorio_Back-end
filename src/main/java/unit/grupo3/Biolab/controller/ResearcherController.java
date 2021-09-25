@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import unit.grupo3.Biolab.model.ResearcherEntity;
 import unit.grupo3.Biolab.repository.ResearcherRepository;
+import unit.grupo3.Biolab.service.ResearcherService;
 
 import java.util.Optional;
 
@@ -21,25 +22,19 @@ import java.util.Optional;
 public class ResearcherController {
 
     @Autowired
-    private ResearcherRepository repository;
+    private ResearcherService researcherService;
 
     @GetMapping
     ResponseEntity getRegisteredResearcher(@RequestParam(value = "email") String email,
                                            @RequestParam(value = "password") String password){
 
-        Optional<ResearcherEntity> researcherEntityOptional = repository.findByEmailAndPassword(email, password);
-
-        if (researcherEntityOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.OK).body(null);
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        return researcherService.getRegisteredResearcher(email, password);
     }
 
     @PostMapping
     ResponseEntity createResearcher(@RequestBody ResearcherEntity researcherEntity){
-        
-        repository.save(researcherEntity);
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+
+        return researcherService.createResearcher(researcherEntity);
     }
 
 }
