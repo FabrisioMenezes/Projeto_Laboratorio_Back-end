@@ -34,6 +34,30 @@ public class ResearcherEntity {
         return email;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Integer getMatriculation() {
+        return matriculation;
+    }
+
+    public String getAreaOfInterest() {
+        return areaOfInterest;
+    }
+
+    public String getCurriculumLink() {
+        return curriculumLink;
+    }
+
     @Override
     public String toString() {
         return "ResearcherEntity{" +
