@@ -38,7 +38,7 @@ public class ResearcherControllerTest {
     void shouldCreateResearcher() throws Exception {
 
         ResearcherEntity researcherEntity = new ResearcherEntity("Artur", "artur@unit.com",
-                "12345", 12345, "testando", "testando");
+                "12345", 12345, "testando", "testando",true);
 
         mvc.perform(post("/researchers")
             .contentType(MediaType.APPLICATION_JSON)
@@ -51,7 +51,7 @@ public class ResearcherControllerTest {
     void shouldNotCreateResearcherBecauseAlreadyExistEmail() throws Exception {
 
         ResearcherEntity researcherEntity = new ResearcherEntity("Artur", "artur-teste@unit.com",
-                "12345", 12345, "testando", "testando");
+                "12345", 12345, "testando", "testando",true);
 
         mvc.perform(post("/researchers")
             .contentType(MediaType.APPLICATION_JSON)

@@ -16,12 +16,13 @@ public class AdministratorEntity {
     private String name;
     private String email;
     private String password;
+    private Boolean active;
 
     public AdministratorEntity(){
 
     }
 
-    public AdministratorEntity(String name, String email, String password){
+    public AdministratorEntity(String name, String email, String password, Boolean active){
 
         this.name = name;
         this.email = email;
@@ -44,6 +45,10 @@ public class AdministratorEntity {
         return password;
     }
 
+    public Boolean getActive(){
+        return active;
+    }
+
     @Override
     public String toString(){
         return "AdministratorEntity{" +
@@ -51,6 +56,7 @@ public class AdministratorEntity {
         ", name='" + name + '\'' +
         ", email='" + email + '\'' +
         ", password='" + password + '\'' +
+        ", active ='" + active + '\'' +
         '}';
     }
     

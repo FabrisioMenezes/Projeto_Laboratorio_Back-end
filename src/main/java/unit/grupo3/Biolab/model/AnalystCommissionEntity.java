@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import java.util.Date;
 
 @Entity(name = "ANALYSTCOMMISION")
 public class AnalystCommissionEntity {
@@ -13,41 +13,41 @@ public class AnalystCommissionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long protocolId;
-    private String seemDate;
-    private String firstAnalyst;
-    private String secondAnalyst;
-    private String thirdAnalyst;
+    private Date seemDate;
+    private Long firstAnalystId;
+    private Long secondAnalystId;
+    private Long thirdAnalystId;
 
     public AnalystCommissionEntity(){
 
     }
 
-    public AnalystCommissionEntity(Long protocolId, String seemDate, String firstAnalyst, String secondAnalyst, String thirdAnalyst){
+    public AnalystCommissionEntity(Long protocolId, Date seemDate, Long firstAnalystId, Long secondAnalystId, Long thirdAnalystId){
         this.protocolId = protocolId;
         this.seemDate = seemDate;
-        this.firstAnalyst = firstAnalyst;
-        this.secondAnalyst = secondAnalyst;
-        this.thirdAnalyst = thirdAnalyst;
+        this.firstAnalystId = firstAnalystId;
+        this.secondAnalystId = secondAnalystId;
+        this.thirdAnalystId = thirdAnalystId;
     }
 
     public Long getProtocolId(){
         return protocolId;
     }
 
-    public String getSeemDate(){
+    public Date getSeemDate(){
         return seemDate;
     }
 
-    public String getFirstAnalyst(){
-        return firstAnalyst;
+    public Long getFirstAnalystId(){
+        return firstAnalystId;
     }
 
-    public String getSecondAnalyst(){
-        return secondAnalyst;
+    public Long getSecondAnalystId(){
+        return secondAnalystId;
     }
 
-    public String getThirdAnalyst(){
-        return thirdAnalyst;
+    public Long getThirdAnalystId(){
+        return thirdAnalystId;
     }
 
     @Override
@@ -56,9 +56,9 @@ public class AnalystCommissionEntity {
         "id='" + id + '\'' +
         ", protocolId='" + protocolId + '\''+
         ", seemDate='" + seemDate + '\'' +
-        ", firstAnalyst='" + firstAnalyst + '\'' +
-        ", secondAnalyst='" + secondAnalyst + '\'' +
-        ", thirdAnalyst='" + thirdAnalyst + '\'' +
+        ", firstAnalyst='" + firstAnalystId + '\'' +
+        ", secondAnalyst='" + secondAnalystId + '\'' +
+        ", thirdAnalyst='" + thirdAnalystId + '\'' +
         "}";
     }
 

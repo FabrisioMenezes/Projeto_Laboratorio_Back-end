@@ -15,15 +15,17 @@ public class SecretaryEntity {
     private String name;
     private String email;
     private String password;
+    private Boolean active;
 
     public SecretaryEntity(){
         
     }
 
-    public SecretaryEntity(String name, String email, String password){
+    public SecretaryEntity(String name, String email, String password, Boolean active){
         this.name = name;
         this.email = email;
         this.password = password;
+        this.active = active;
     }
 
     public Long getId(){
@@ -40,6 +42,10 @@ public class SecretaryEntity {
 
     public String getPassword(){
         return password;
+    }
+
+    public Boolean getActive(){
+        return active;
     }
 
     @Override

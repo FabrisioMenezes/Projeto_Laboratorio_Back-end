@@ -16,17 +16,17 @@ public class PresidentEntity {
     private Long researcherId;
     private Date managementStart;
     private Date managementEnd;
-    private Boolean status;
+    private Boolean active;
 
     public PresidentEntity(){
 
     }
 
-    public PresidentEntity(Long researcherId, Date managementStart, Date managementEnd, Boolean status){
+    public PresidentEntity(Long researcherId, Date managementStart, Date managementEnd, Boolean active){
         this.researcherId = researcherId;
         this.managementStart = managementStart;
         this.managementEnd = managementEnd;
-        this.status = status;
+        this.active = active;
     }
 
     public Long getId() {
@@ -49,13 +49,13 @@ public class PresidentEntity {
 
 
     public Boolean getStatus() {
-        return status;
+        return active;
     }
 
     @Override
     public String toString() {
         return "PresidentEntity [id=" + id + ", managementEnd=" + managementEnd + ", managementStart=" + managementStart
-                + ", researcherId=" + researcherId + ", status=" + status + "]";
+                + ", researcherId=" + researcherId + ", status=" + active + "]";
     }
 
     
