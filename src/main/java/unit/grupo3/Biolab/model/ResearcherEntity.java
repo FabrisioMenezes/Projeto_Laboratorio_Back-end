@@ -17,17 +17,19 @@ public class ResearcherEntity {
     private Integer matriculation;
     private String areaOfInterest;
     private String curriculumLink;
+    private Boolean active;
 
     public ResearcherEntity() {
     }
 
-    public ResearcherEntity(String name, String email, String password, Integer matriculation, String areaOfInterest, String curriculumLink) {
+    public ResearcherEntity(String name, String email, String password, Integer matriculation, String areaOfInterest, String curriculumLink, Boolean active) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.matriculation = matriculation;
         this.areaOfInterest = areaOfInterest;
         this.curriculumLink = curriculumLink;
+        this.active = active;
     }
 
     public String getEmail() {
@@ -58,6 +60,10 @@ public class ResearcherEntity {
         return curriculumLink;
     }
 
+    public Boolean getActive(){
+        return active;
+    }
+
     @Override
     public String toString() {
         return "ResearcherEntity{" +
@@ -68,6 +74,7 @@ public class ResearcherEntity {
                 ", matriculation=" + matriculation +
                 ", areaOfInterest='" + areaOfInterest + '\'' +
                 ", curriculumLink='" + curriculumLink + '\'' +
+                ", active='" + active + '\'' +
                 '}';
     }
 }
