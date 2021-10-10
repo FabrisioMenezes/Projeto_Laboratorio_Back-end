@@ -18,11 +18,12 @@ public class ResearcherEntity {
     private String areaOfInterest;
     private String curriculumLink;
     private Boolean active;
+    private Boolean isPresident;
 
     public ResearcherEntity() {
     }
 
-    public ResearcherEntity(String name, String email, String password, Integer matriculation, String areaOfInterest, String curriculumLink, Boolean active) {
+    public ResearcherEntity(String name, String email, String password, Integer matriculation, String areaOfInterest, String curriculumLink, Boolean active, Boolean isPresident) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -30,6 +31,7 @@ public class ResearcherEntity {
         this.areaOfInterest = areaOfInterest;
         this.curriculumLink = curriculumLink;
         this.active = active;
+        this.isPresident = isPresident;
     }
 
     public String getEmail() {
@@ -62,6 +64,10 @@ public class ResearcherEntity {
 
     public Boolean getActive(){
         return active;
+    }
+
+    public Boolean getPresident() {
+        return isPresident;
     }
 
     @Override

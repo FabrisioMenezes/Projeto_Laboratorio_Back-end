@@ -5,5 +5,4 @@ import unit.grupo3.Biolab.model.PresidentEntity;
 import java.util.Optional;
 
 public interface PresidentRepository extends JpaRepository <PresidentEntity,Long>{
-    Optional <PresidentEntity> findbyEmailandPassword(String email, String password);
 }
