@@ -1,14 +1,17 @@
 package unit.grupo3.Biolab.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Date;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity(name = "PROTOCOLS")
 public class ProtocolsEntity {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,10 +30,11 @@ public class ProtocolsEntity {
     private Boolean thirdSeem;
     private Long areaId;
 
-    public ProtocolsEntity(){
-
+    public ProtocolsEntity() {
     }
-    public ProtocolsEntity(String title, Integer matriculation, Integer status, String review, Boolean seemComission, Boolean seemPresident, Date creationDate, Date seemDate, Long speciesId, Integer quantitySpecies, Boolean firstSeem, Boolean secondSeem, Boolean thirdSeem, Long areaId){
+
+    public ProtocolsEntity(Long id, String title, Integer matriculation, Integer status, String review, Boolean seemComission, Boolean seemPresident, Date creationDate, Date seemDate, Long speciesId, Integer quantitySpecies, Boolean firstSeem, Boolean secondSeem, Boolean thirdSeem, Long areaId) {
+        this.id = id;
         this.title = title;
         this.matriculation = matriculation;
         this.status = status;
@@ -46,6 +50,7 @@ public class ProtocolsEntity {
         this.thirdSeem = thirdSeem;
         this.areaId = areaId;
     }
+
     public Long getId() {
         return id;
     }
@@ -73,50 +78,57 @@ public class ProtocolsEntity {
     public Boolean getSeemPresident() {
         return seemPresident;
     }
- 
+
     public Date getCreationDate() {
         return creationDate;
     }
-  
+
     public Date getSeemDate() {
         return seemDate;
     }
-  
+
     public Long getSpeciesId() {
         return speciesId;
     }
-  
+
     public Integer getQuantitySpecies() {
         return quantitySpecies;
     }
-  
+
     public Boolean getFirstSeem() {
         return firstSeem;
     }
-    
+
     public Boolean getSecondSeem() {
         return secondSeem;
     }
-   
+
     public Boolean getThirdSeem() {
         return thirdSeem;
     }
-    
+
+    public Long getAreaId() {
+        return areaId;
+    }
+
     @Override
     public String toString() {
-        return "ProtocolsEntity [areaId=" + areaId + ", creationDate=" + creationDate + ", firstSeem=" + firstSeem
-                + ", id=" + id + ", matriculation=" + matriculation + ", quantitySpecies=" + quantitySpecies
-                + ", review=" + review + ", secondSeem=" + secondSeem + ", seemComission=" + seemComission
-                + ", seemDate=" + seemDate + ", seemPresident=" + seemPresident + ", speciesId=" + speciesId
-                + ", status=" + status + ", thirdSeem=" + thirdSeem + ", title=" + title + "]";
+        return "ProtocolsEntity{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", matriculation=" + matriculation +
+                ", status=" + status +
+                ", review='" + review + '\'' +
+                ", seemComission=" + seemComission +
+                ", seemPresident=" + seemPresident +
+                ", creationDate=" + creationDate +
+                ", seemDate=" + seemDate +
+                ", speciesId=" + speciesId +
+                ", quantitySpecies=" + quantitySpecies +
+                ", firstSeem=" + firstSeem +
+                ", secondSeem=" + secondSeem +
+                ", thirdSeem=" + thirdSeem +
+                ", areaId=" + areaId +
+                '}';
     }
-  
-    
-
-    
-  
-
-    
-
-
 }

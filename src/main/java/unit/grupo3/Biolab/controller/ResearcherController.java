@@ -1,15 +1,11 @@
 package unit.grupo3.Biolab.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import unit.grupo3.Biolab.dto.ResearcherEntityDTO;
 import unit.grupo3.Biolab.model.ResearcherEntity;
-import unit.grupo3.Biolab.repository.ResearcherRepository;
 import unit.grupo3.Biolab.service.ResearcherService;
-
-import java.util.Optional;
 
 @RestController
 @CrossOrigin
