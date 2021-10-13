@@ -8,4 +8,8 @@ import java.util.Optional;
 public interface ResearcherRepository extends JpaRepository<ResearcherEntity, Long> {
     Optional<ResearcherEntity> findByEmailAndPassword(String email, String password);
     boolean existsByEmail(String email);
+    boolean existsByIsPresident(Boolean status);
+    ResearcherEntity getByMatriculation(Integer matriculation);
+    boolean existsByMatriculation(Integer matriculation);
+    void deleteByMatriculation(Integer matriculation);
 }

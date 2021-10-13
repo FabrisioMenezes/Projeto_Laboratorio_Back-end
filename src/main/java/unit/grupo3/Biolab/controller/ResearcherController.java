@@ -3,13 +3,8 @@ package unit.grupo3.Biolab.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import unit.grupo3.Biolab.dto.ResearcherEntityDTO;
 import unit.grupo3.Biolab.model.ResearcherEntity;
 import unit.grupo3.Biolab.repository.ResearcherRepository;
 import unit.grupo3.Biolab.service.ResearcherService;
@@ -37,4 +32,18 @@ public class ResearcherController {
         return researcherService.createResearcher(researcherEntity);
     }
 
+    @GetMapping("/{matriculation}")
+    ResponseEntity<ResearcherEntityDTO> getResearcherData(@PathVariable Integer matriculation) {
+        return researcherService.getResearcherData(matriculation);
+    }
+
+    @PatchMapping("/{matriculation}")
+    ResponseEntity updateResearcher(@PathVariable Integer matriculation, @RequestBody ResearcherEntity newResearcher) {
+        return researcherService.updateResearcher(matriculation, newResearcher);
+    }
+
+    @DeleteMapping("/{matriculation}")
+    ResponseEntity deleteResearcher(@PathVariable Integer matriculation) {
+        return researcherService.deleteResearcher(matriculation);
+    }
 }

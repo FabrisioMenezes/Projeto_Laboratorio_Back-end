@@ -1,5 +1,7 @@
 package unit.grupo3.Biolab.model;
 
+import unit.grupo3.Biolab.repository.ResearcherRepository;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +20,7 @@ public class ResearcherEntity {
     private String areaOfInterest;
     private String curriculumLink;
     private Boolean active;
-    private Boolean isPresident;
+    private Boolean isPresident = false;
 
     public ResearcherEntity() {
     }
@@ -66,8 +68,35 @@ public class ResearcherEntity {
         return active;
     }
 
-    public Boolean getPresident() {
+    public Boolean getIsPresident() {
         return isPresident;
+    }
+
+    public void update(ResearcherEntity entity) {
+        if (entity.getActive() != null) {
+            this.active = entity.getActive();
+        }
+        if (entity.getEmail() != null) {
+            this.email = entity.getEmail();
+        }
+        if (entity.getPassword() != null) {
+            this.password = entity.getPassword();
+        }
+        if (entity.getName() != null) {
+            this.name = entity.getName();
+        }
+        if (entity.getMatriculation() != null) {
+            this.matriculation = entity.getMatriculation();
+        }
+        if (entity.getAreaOfInterest() != null) {
+            this.areaOfInterest = entity.getAreaOfInterest();
+        }
+        if (entity.getCurriculumLink() != null) {
+            this.curriculumLink = entity.getCurriculumLink();
+        }
+        if (entity.getIsPresident() != null) {
+            this.isPresident = entity.getIsPresident();
+        }
     }
 
     @Override
@@ -80,7 +109,8 @@ public class ResearcherEntity {
                 ", matriculation=" + matriculation +
                 ", areaOfInterest='" + areaOfInterest + '\'' +
                 ", curriculumLink='" + curriculumLink + '\'' +
-                ", active='" + active + '\'' +
+                ", active=" + active +
+                ", isPresident=" + isPresident +
                 '}';
     }
 }
