@@ -28,7 +28,6 @@ public class ResearcherService {
     }
 
     public ResponseEntity createResearcher(ResearcherEntity researcherEntity){
-
         boolean isPresident = researcherEntity.getIsPresident();
         if (isPresident && repository.existsByIsPresident(true)) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiError("Já existe um presidente cadastrado."));
@@ -45,7 +44,6 @@ public class ResearcherService {
         }
         repository.save(researcherEntity);
         return ResponseEntity.status(HttpStatus.CREATED).body(null);
-
     }
 
     public ResponseEntity getResearcherData(Integer matriculation) {
@@ -56,7 +54,7 @@ public class ResearcherService {
             researcherEntityDTO.converter(researcherEntity);
             return ResponseEntity.status(HttpStatus.OK).body(researcherEntityDTO);
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiError("Não existe pesquisador com esta matricula"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiError("Não existe pesquisador com esta matricula"));
         }
     }
 
@@ -72,7 +70,7 @@ public class ResearcherService {
             repository.save(researcherEntity);
             return ResponseEntity.status(HttpStatus.OK).body(null);
         }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiError("Não existe pesquisador com esta matricula"));
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiError("Não existe pesquisador com esta matricula"));
     }
 
     public ResponseEntity deleteResearcher(Integer matriculation) {
@@ -81,6 +79,6 @@ public class ResearcherService {
             repository.deleteByMatriculation(matriculation);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
         }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiError("Não existe pesquisador com esta matricula"));
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiError("Não existe pesquisador com esta matricula"));
     }
 }

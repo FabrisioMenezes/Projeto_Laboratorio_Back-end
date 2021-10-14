@@ -16,7 +16,7 @@ public class ProtocolsService {
 
     public ResponseEntity createProtocol(ProtocolsEntity protocolsEntity) {
         protocolsRepository.save(protocolsEntity);
-        return ResponseEntity.status(HttpStatus.OK).body(protocolsEntity);
+        return ResponseEntity.status(HttpStatus.CREATED).body(protocolsEntity);
     }
 
     public ResponseEntity getProtocolData(Long id) {
@@ -25,7 +25,15 @@ public class ProtocolsService {
             ProtocolsEntity protocolsEntity = protocolsRepository.getById(id);
             return ResponseEntity.status(HttpStatus.OK).body(protocolsEntity);
         }
-        return ResponseEntity.status(HttpStatus.OK).body(new ApiError("Não existe protocolo com este ID"));
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiError("Não existe protocolo com este ID"));
     }
 
+    public ResponseEntity deleteProtocol(Long id) {
+        boolean existsById = protocolsRepository.existsById(id);
+        if (existsById) {
+            protocolsRepository.deleteById(id);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiError("Não existe protoco com este ID"));
+    }
 }
