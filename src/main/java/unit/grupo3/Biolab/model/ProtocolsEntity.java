@@ -1,7 +1,8 @@
 package unit.grupo3.Biolab.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
+import unit.grupo3.Biolab.utils.CurrentDateFormatted;
+import unit.grupo3.Biolab.utils.ProtocolsStatus;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,12 +18,12 @@ public class ProtocolsEntity {
     private Long id;
     private String title;
     private Integer matriculation;
-    private Integer status;
-    private String review;
-    private Boolean seemComission;
-    private Boolean seemPresident;
-    private Date creationDate;
-    private Date seemDate;
+    private ProtocolsStatus status; // 1 - pendente, 2 - analise, 3 - aprovado, 4 - reprovado
+    private String review; //obrigatorio
+    private Boolean seemComission; // validado pelos analistas
+    private Boolean seemPresident; // validado pelo presidente
+    private final String creationDate = new CurrentDateFormatted().getDate();
+    private Date seemDate; // quando presidente validar
     private Long speciesId;
     private Integer quantitySpecies;
     private Boolean firstSeem;
@@ -33,15 +34,13 @@ public class ProtocolsEntity {
     public ProtocolsEntity() {
     }
 
-    public ProtocolsEntity(Long id, String title, Integer matriculation, Integer status, String review, Boolean seemComission, Boolean seemPresident, Date creationDate, Date seemDate, Long speciesId, Integer quantitySpecies, Boolean firstSeem, Boolean secondSeem, Boolean thirdSeem, Long areaId) {
-        this.id = id;
+    public ProtocolsEntity(String title, Integer matriculation, ProtocolsStatus status, String review, Boolean seemComission, Boolean seemPresident,Date seemDate, Long speciesId, Integer quantitySpecies, Boolean firstSeem, Boolean secondSeem, Boolean thirdSeem, Long areaId) {
         this.title = title;
         this.matriculation = matriculation;
         this.status = status;
         this.review = review;
         this.seemComission = seemComission;
         this.seemPresident = seemPresident;
-        this.creationDate = creationDate;
         this.seemDate = seemDate;
         this.speciesId = speciesId;
         this.quantitySpecies = quantitySpecies;
@@ -63,7 +62,7 @@ public class ProtocolsEntity {
         return matriculation;
     }
 
-    public Integer getStatus() {
+    public ProtocolsStatus getStatus() {
         return status;
     }
 
@@ -79,7 +78,7 @@ public class ProtocolsEntity {
         return seemPresident;
     }
 
-    public Date getCreationDate() {
+    public String getCreationDate() {
         return creationDate;
     }
 
