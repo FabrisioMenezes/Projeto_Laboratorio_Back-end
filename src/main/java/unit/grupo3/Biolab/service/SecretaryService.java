@@ -59,7 +59,8 @@ public class SecretaryService {
         boolean existSecretary = repository.existsByEmail(email);
 
         if(existSecretary){
-            repository.deleteByEmail(email);
+            SecretaryEntity secretaryEntity = repository.getByEmail(email);
+            repository.deleteById(secretaryEntity.getId());
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiError("Não existe nenhuma secretária com este email!"));

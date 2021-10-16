@@ -74,8 +74,9 @@ public class AdministratorService {
         boolean existADministrator = repository.existsByEmail(email);
 
         if(existADministrator){
-            repository.deleteByEmail(email);
-            ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+            AdministratorEntity administratorEntity = repository.getByEmail(email); 
+            repository.deleteById(administratorEntity.getId());
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
         }
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiError ("Não existe administrador cadastrado com esse email"));
