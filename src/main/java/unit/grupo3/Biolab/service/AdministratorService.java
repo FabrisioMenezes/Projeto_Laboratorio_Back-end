@@ -18,14 +18,13 @@ public class AdministratorService {
     private AdministratorRepository repository;
 
     public ResponseEntity getRegisteredAdministrator(String email, String password){
-        
-        Optional <AdministratorEntity> administratorEntity = repository.findByEmailAndPassword(email,password);
 
-        if(administratorEntity.isPresent()){
-            return ResponseEntity.status(HttpStatus.OK).body(administratorEntity.get());
+        Optional <AdministratorEntity> administratorEntityOptional = repository.findByEmailAndPassword(email,password);
+
+        if(administratorEntityOptional.isPresent()){
+            return ResponseEntity.status(HttpStatus.OK).body(administratorEntityOptional);
         }
-
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiError ("Administrador não cadastrado"));
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiError("Administrador não encontrado!"));
     }
 
     public ResponseEntity createAdministrator(AdministratorEntity administratorEntity){
@@ -33,37 +32,16 @@ public class AdministratorService {
         boolean existAdministrator = repository.existsByEmail(administratorEntity.getEmail());
 
         if(existAdministrator){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiError ("Email já cadastrado"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiError("Já existe um administrador criado com esse email!"));
         }
 
         repository.save(administratorEntity);
         return ResponseEntity.status(HttpStatus.CREATED).body(null);
     }
 
-    public ResponseEntity deleteAdministrator(String email){
-
-        boolean existAdministrator = repository.existsByEmail(email);
-        
-        if(existAdministrator){
-            repository.deleteByEmail(email);
-            ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiError("Não existe nenhum administrador cadastrado com esse email!"));
-    }
-    
-    public ResponseEntity updateAdministrator(AdministratorEntity administratorEntity){
-
-        boolean existAdministrator = repository.existsByEmail(administratorEntity.getEmail());
-
-        if(existAdministrator){
-            AdministratorEntity oldAdministratorEntity = repository.getByEmail(administratorEntity.getEmail());
-        }
-        
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiError("Não existe nenhum administrador cadastrado com esse email!"));
-    }
 
     public ResponseEntity getAdministratorData(String email){
-        
+
         boolean existAdministrator = repository.existsByEmail(email);
 
         if(existAdministrator){
@@ -73,7 +51,35 @@ public class AdministratorService {
             return ResponseEntity.status(HttpStatus.OK).body(administratorEntityDTO);
         }
 
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiError("Não existe nenhum administrador cadastrado com esse email!"));
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Administrador não encontrado!");
     }
+
+    public ResponseEntity updateAdministrator(String email,AdministratorEntity administratorEntity){
+
+        boolean existAdministrator = repository.existsByEmail(email);
+
+        if(existAdministrator){
+            AdministratorEntity oldAdministrator = repository.getByEmail(email);
+            oldAdministrator.update(administratorEntity);
+            repository.save(oldAdministrator);
+            return ResponseEntity.status(HttpStatus.OK).body(null);
+        }
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiError("Não existe administrador cadastrado com esse email"));
+
+    }   
+
+    public ResponseEntity deleteAdministrator(String email){
+
+        boolean existADministrator = repository.existsByEmail(email);
+
+        if(existADministrator){
+            repository.deleteByEmail(email);
+            ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+        }
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiError ("Não existe administrador cadastrado com esse email"));
+    }
+
 
 }   
