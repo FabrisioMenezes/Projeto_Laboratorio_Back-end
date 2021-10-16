@@ -6,4 +6,7 @@ import java.util.Optional;
 
 public interface SecretaryRepository extends JpaRepository <SecretaryEntity,Long> {
     Optional<SecretaryEntity> findByEmailAndPassword(String email, String password);
+    boolean existsByEmail(String email);
+    SecretaryEntity getByEmail(String email);
+    void deleteByEmail(String email);
 }

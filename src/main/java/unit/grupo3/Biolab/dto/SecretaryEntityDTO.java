@@ -27,7 +27,13 @@ public class SecretaryEntityDTO {
         return email;
     }
 
-    public String active(){
+    public Boolean getActive(){
         return active;
+    }
+
+    public void converter(SecretaryEntity secretEntity){
+        name = secretEntity.getName();
+        email = secretEntity.getEmail();
+        active = secretEntity.getActive();
     }
 }
