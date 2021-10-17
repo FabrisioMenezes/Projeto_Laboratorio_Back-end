@@ -37,6 +37,17 @@ public class SpecieEntity {
     }
 
 
+    public void update(SpecieEntity entity){
+        
+        if(entity.getName() != null){
+            name = entity.getName();
+        }
+
+        if(entity.getAvaliableQuantity() != null){
+            avaliableQuantity = entity.getAvaliableQuantity();
+        }
+    }
+
     @Override
     public String toString() {
         return "SpecieEntity [avaliableQuantity=" + avaliableQuantity + ", id=" + id + ", name=" + name + "]";
