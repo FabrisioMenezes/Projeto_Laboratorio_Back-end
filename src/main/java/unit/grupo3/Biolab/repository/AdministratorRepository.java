@@ -7,4 +7,7 @@ import java.util.Optional;
 
 public interface AdministratorRepository extends JpaRepository <AdministratorEntity,Long> {
     Optional<AdministratorEntity> findByEmailAndPassword(String email, String password);
+    boolean existsByEmail(String email);
+    void deleteById(Long id);
+    AdministratorEntity getByEmail(String email);
 }
