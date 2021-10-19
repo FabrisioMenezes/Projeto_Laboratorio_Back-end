@@ -30,12 +30,16 @@ public class AnalystCommissionEntity {
         this.thirdAnalystId = thirdAnalystId;
     }
 
-    public Long getProtocolId(){
-        return protocolId;
+    public Long getId(){
+        return id;
     }
 
-    public Date getSeemDate(){
+    public Date getSeemDate() {
         return seemDate;
+    }
+
+    public Long getProtocolId(){
+        return protocolId;
     }
 
     public Long getFirstAnalystId(){
@@ -48,6 +52,25 @@ public class AnalystCommissionEntity {
 
     public Long getThirdAnalystId(){
         return thirdAnalystId;
+    }
+
+    public void update(AnalystCommissionEntity entity){
+        if(entity.getProtocolId() != null){
+            protocolId = entity.getProtocolId();
+        }
+        if(entity.getSeemDate() != null){
+            seemDate= entity.getSeemDate();
+        }
+        if(entity.getFirstAnalystId() != null){
+            firstAnalystId = entity.getFirstAnalystId();
+        }
+        if(entity.getSecondAnalystId() != null){
+            secondAnalystId = entity.getSecondAnalystId();
+        }
+        if(entity.getThirdAnalystId() != null){
+            thirdAnalystId = entity.getThirdAnalystId();
+        }
+
     }
 
     @Override
