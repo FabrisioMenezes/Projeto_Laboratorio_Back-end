@@ -23,6 +23,10 @@ public class AreaOfInterestEntity {
         this.description = description;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public String getName(){
         return name;
     }
@@ -31,6 +35,16 @@ public class AreaOfInterestEntity {
         return description;
     }
 
+
+    public void update(AreaOfInterestEntity entity){
+        if(entity.getName() != null){
+            name = entity.getName();
+        }
+        if(entity.getDescription() != null){
+            description = entity.getDescription();
+        }
+    }
+    
     @Override
     public String toString(){
         return "AreaOfInterestEntity{" +
