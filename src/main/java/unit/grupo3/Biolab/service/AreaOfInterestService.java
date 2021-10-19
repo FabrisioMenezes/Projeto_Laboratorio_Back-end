@@ -52,6 +52,7 @@ public class AreaOfInterestService {
         if(existAreaOfInterest){
             AreaOfInterestEntity entity = repository.getByName(name);
             repository.deleteById(entity.getId());
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
         }
         
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiError("Não existe nenhuma área de interesse com esse nome!"));
