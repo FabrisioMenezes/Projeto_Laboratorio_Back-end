@@ -15,7 +15,7 @@ public class PresidentService {
     @Autowired
     private PresidentRepository repository;
 
-    ResponseEntity getRegisteredPresident(Long researcherId){
+    public ResponseEntity getRegisteredPresident(Long researcherId){
         
         boolean existPresident = repository.existsByResearcherId(researcherId);
 
@@ -29,7 +29,7 @@ public class PresidentService {
 
     }
 
-    ResponseEntity createPresident(PresidentEntity presidentEntity){
+    public ResponseEntity createPresident(PresidentEntity presidentEntity){
 
         boolean existPresident = repository.existsByResearcherId(presidentEntity.getResearcherId());
 
@@ -43,7 +43,7 @@ public class PresidentService {
         return ResponseEntity.status(HttpStatus.CREATED).body(null);
     }
 
-    ResponseEntity deletePresident(Long researcherId){
+    public ResponseEntity deletePresident(Long researcherId){
         
         boolean existsPresident = repository.existsByResearcherId(researcherId);
 
@@ -61,7 +61,7 @@ public class PresidentService {
     
     }
 
-    ResponseEntity updatePresident(PresidentEntity presidentEntity){
+    public ResponseEntity updatePresident(PresidentEntity presidentEntity){
 
         boolean existsPresident = repository.existsByResearcherId(presidentEntity.getResearcherId());
 
