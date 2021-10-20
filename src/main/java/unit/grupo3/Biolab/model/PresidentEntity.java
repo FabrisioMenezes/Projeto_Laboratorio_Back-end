@@ -52,6 +52,25 @@ public class PresidentEntity {
         return active;
     }
 
+    public void update(PresidentEntity entity){
+        
+        if(entity.getResearcherId() != null){
+            researcherId = entity.getResearcherId();
+        }
+
+        if(entity.getManagementStart() != null){
+            managementStart = entity.getManagementStart();
+        }
+
+        if(entity.getManagementEnd() != null){
+            managementEnd = entity.getManagementEnd();
+        }
+
+        if(entity.getStatus() != null){
+            active = entity.getStatus();
+        }
+    }
+
     @Override
     public String toString() {
         return "PresidentEntity [id=" + id + ", managementEnd=" + managementEnd + ", managementStart=" + managementStart
