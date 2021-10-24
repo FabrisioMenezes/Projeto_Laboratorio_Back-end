@@ -48,13 +48,14 @@ public class SpecieService {
         
     }
 
-    public ResponseEntity updateSpecie(String name,SpecieEntity specieEntity){
+    public ResponseEntity updateSpecie(SpecieEntity specieEntity){
         
-        boolean existSpecie = repository.existsByName(name);
+        boolean existSpecie = repository.existsByName(specieEntity.getName());
 
         if(existSpecie){
-            SpecieEntity oldSpecieEntity = repository.getByName(name);
+            SpecieEntity oldSpecieEntity = repository.getByName(specieEntity.getName());
             oldSpecieEntity.update(specieEntity);
+            repository.save(oldSpecieEntity);
             return ResponseEntity.status(HttpStatus.OK).body(null);
         }
 
