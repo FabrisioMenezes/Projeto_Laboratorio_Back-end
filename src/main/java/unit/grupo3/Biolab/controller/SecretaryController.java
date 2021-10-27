@@ -9,7 +9,7 @@ import unit.grupo3.Biolab.service.SecretaryService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/  ")
+@RequestMapping("/secretarys")
 public class SecretaryController {
     @Autowired
     private SecretaryService secretaryService;
