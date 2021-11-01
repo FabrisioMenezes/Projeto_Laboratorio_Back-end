@@ -28,4 +28,9 @@ public class ProtocolsController {
     public ResponseEntity deleteProtocol(@PathVariable Long id) {
         return protocolsService.deleteProtocol(id);
     }
+
+    @GetMapping
+    public ResponseEntity getProtocols(){
+        return protocolsService.getProtocols();
+    }
 }
