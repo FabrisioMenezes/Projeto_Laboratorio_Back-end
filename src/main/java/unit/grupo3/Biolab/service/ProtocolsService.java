@@ -36,4 +36,8 @@ public class ProtocolsService {
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiError("Não existe protoco com este ID"));
     }
+
+    public ResponseEntity getProtocols(){
+        return ResponseEntity.status(HttpStatus.OK).body(protocolsRepository.findAll());
+    }
 }
