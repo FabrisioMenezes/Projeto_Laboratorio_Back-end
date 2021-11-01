@@ -1,12 +1,10 @@
 package unit.grupo3.Biolab.controller;
 
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import unit.grupo3.Biolab.model.SpecieEntity;
 import unit.grupo3.Biolab.service.SpecieService;
-
 
 @RestController
 @CrossOrigin

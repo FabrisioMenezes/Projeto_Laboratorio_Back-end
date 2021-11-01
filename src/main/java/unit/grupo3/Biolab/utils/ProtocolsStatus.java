@@ -1,7 +1,7 @@
 package unit.grupo3.Biolab.utils;
 
 public enum ProtocolsStatus {
-    PENDING(1), ANALYSING(2), APPROVED(3), REPROVED(4);
+    PENDING(0), ANALYSING(1), APPROVED(2), REPROVED(3);
 
     private final Integer current;
 
