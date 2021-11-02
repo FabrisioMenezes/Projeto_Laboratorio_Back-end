@@ -60,4 +60,7 @@ public class ProtocolsService {
         return null;
     }
 
+    public ResponseEntity getProtocols() {
+        return ResponseEntity.status(HttpStatus.OK).body(protocolsRepository.findAll());
+    }
 }

@@ -33,4 +33,9 @@ public class ProtocolsController {
     public ResponseEntity getByStatus(@PathVariable int status) {
         return protocolsService.getProtocolsByStatus(status);
     }
+  
+    @GetMapping
+    public ResponseEntity getProtocols() {
+        return protocolsService.getProtocols();
+    }
 }
