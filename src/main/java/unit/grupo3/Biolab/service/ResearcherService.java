@@ -9,6 +9,8 @@ import unit.grupo3.Biolab.model.ResearcherEntity;
 import unit.grupo3.Biolab.repository.ResearcherRepository;
 import unit.grupo3.Biolab.service.error.ApiError;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -80,5 +82,25 @@ public class ResearcherService {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiError("Não existe pesquisador com esta matricula"));
+    }
+
+    public ResponseEntity getActiveResearchers() {
+        List<ResearcherEntity> researcherList = repository.getByActive(true);
+        if (researcherList.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiError("Não existem pesquisadores ativos"));
+        }
+
+        List<ResearcherEntityDTO> researcherDTOList = convertToDTO(researcherList);
+        return ResponseEntity.status(HttpStatus.OK).body(researcherDTOList);
+    }
+
+    private List<ResearcherEntityDTO> convertToDTO(List<ResearcherEntity> researcherList ) {
+        List<ResearcherEntityDTO> researcherDTOList = new ArrayList<>();
+        for(ResearcherEntity researcher : researcherList) {
+            ResearcherEntityDTO researcherEntityDTO = new ResearcherEntityDTO();
+            researcherEntityDTO.converter(researcher);
+            researcherDTOList.add(researcherEntityDTO);
+        }
+        return researcherDTOList;
     }
 }

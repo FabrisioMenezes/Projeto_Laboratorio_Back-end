@@ -42,4 +42,10 @@ public class ResearcherController {
     ResponseEntity deleteResearcher(@PathVariable Integer matriculation) {
         return researcherService.deleteResearcher(matriculation);
     }
+
+    @GetMapping("/actives")
+    ResponseEntity getResearchers() {
+        return researcherService.getActiveResearchers();
+    }
+
 }
