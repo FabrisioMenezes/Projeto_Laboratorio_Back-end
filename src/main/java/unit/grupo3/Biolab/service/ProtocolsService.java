@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 import unit.grupo3.Biolab.model.ProtocolsEntity;
 import unit.grupo3.Biolab.repository.ProtocolsRepository;
 import unit.grupo3.Biolab.service.error.ApiError;
+import unit.grupo3.Biolab.utils.ProtocolsStatus;
+
+import java.util.List;
 
 @Service
 public class ProtocolsService {
@@ -37,7 +40,27 @@ public class ProtocolsService {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiError("Não existe protoco com este ID"));
     }
 
-    public ResponseEntity getProtocols(){
+    public ResponseEntity getProtocolsByStatus(int status) {
+        ProtocolsStatus protocolsStatus = convertToEnum(status);
+        if (protocolsStatus == null) return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ApiError("Não existe status com referência ao número " + status));
+
+        List<ProtocolsEntity> protocolsStatusList = protocolsRepository.getByStatus(protocolsStatus);
+        if (protocolsStatusList.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiError("Não existe protocolo com o status " + protocolsStatus));
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(protocolsStatusList);
+    }
+
+    private ProtocolsStatus convertToEnum(int status) {
+        if (status == 0) return ProtocolsStatus.PENDING;
+        if (status == 1) return ProtocolsStatus.ANALYSING;
+        if (status == 2) return ProtocolsStatus.APPROVED;
+        if (status == 3) return ProtocolsStatus.REPROVED;
+        return null;
+    }
+
+    public ResponseEntity getProtocols() {
         return ResponseEntity.status(HttpStatus.OK).body(protocolsRepository.findAll());
     }
 }

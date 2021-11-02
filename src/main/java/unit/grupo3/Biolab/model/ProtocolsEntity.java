@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Date;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity(name = "PROTOCOLS")
@@ -18,12 +17,12 @@ public class ProtocolsEntity {
     private Long id;
     private String title;
     private Integer matriculation;
-    private ProtocolsStatus status; // 1 - pendente, 2 - analise, 3 - aprovado, 4 - reprovado
-    private String review; //obrigatorio
-    private Boolean seemComission; // validado pelos analistas
-    private Boolean seemPresident; // validado pelo presidente
+    private ProtocolsStatus status;
+    private String review;
+    private Boolean seemCommission;
+    private Boolean seemPresident;
     private final String creationDate = new CurrentDateFormatted().getDate();
-    private Date seemDate; // quando presidente validar
+    private String seemDate;
     private Long speciesId;
     private Integer quantitySpecies;
     private Boolean firstSeem;
@@ -34,12 +33,12 @@ public class ProtocolsEntity {
     public ProtocolsEntity() {
     }
 
-    public ProtocolsEntity(String title, Integer matriculation, ProtocolsStatus status, String review, Boolean seemComission, Boolean seemPresident,Date seemDate, Long speciesId, Integer quantitySpecies, Boolean firstSeem, Boolean secondSeem, Boolean thirdSeem, Long areaId) {
+    public ProtocolsEntity(String title, Integer matriculation, ProtocolsStatus status, String review, Boolean seemCommission, Boolean seemPresident,String seemDate, Long speciesId, Integer quantitySpecies, Boolean firstSeem, Boolean secondSeem, Boolean thirdSeem, Long areaId) {
         this.title = title;
         this.matriculation = matriculation;
         this.status = status;
         this.review = review;
-        this.seemComission = seemComission;
+        this.seemCommission = seemCommission;
         this.seemPresident = seemPresident;
         this.seemDate = seemDate;
         this.speciesId = speciesId;
@@ -70,8 +69,8 @@ public class ProtocolsEntity {
         return review;
     }
 
-    public Boolean getSeemComission() {
-        return seemComission;
+    public Boolean getSeemCommission() {
+        return seemCommission;
     }
 
     public Boolean getSeemPresident() {
@@ -82,7 +81,7 @@ public class ProtocolsEntity {
         return creationDate;
     }
 
-    public Date getSeemDate() {
+    public String getSeemDate() {
         return seemDate;
     }
 
@@ -118,7 +117,7 @@ public class ProtocolsEntity {
                 ", matriculation=" + matriculation +
                 ", status=" + status +
                 ", review='" + review + '\'' +
-                ", seemComission=" + seemComission +
+                ", seemCommission=" + seemCommission +
                 ", seemPresident=" + seemPresident +
                 ", creationDate=" + creationDate +
                 ", seemDate=" + seemDate +

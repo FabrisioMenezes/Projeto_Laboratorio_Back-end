@@ -29,8 +29,13 @@ public class ProtocolsController {
         return protocolsService.deleteProtocol(id);
     }
 
+    @GetMapping("/status/{status}")
+    public ResponseEntity getByStatus(@PathVariable int status) {
+        return protocolsService.getProtocolsByStatus(status);
+    }
+  
     @GetMapping
-    public ResponseEntity getProtocols(){
+    public ResponseEntity getProtocols() {
         return protocolsService.getProtocols();
     }
 }
