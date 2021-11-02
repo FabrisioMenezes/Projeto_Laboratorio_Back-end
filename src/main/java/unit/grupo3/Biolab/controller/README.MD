@@ -371,6 +371,11 @@ ______
 `DELETE /protocols/{id}`
 
   
+## Pegar os protocolos pelos status
+
+`GET /protocols/status/{int}`
+
+  `int é um número inteiro de 0 a 3: PENDING(0), ANALYSING(1), APPROVED(2), REPROVED(3)`
 
 ______
 
@@ -411,6 +416,14 @@ ______
 "isPresident" = true or false
 
 }
+
+## Obter os pesquisadores ativos
+
+  
+
+`GET /researchers/actives`
+
+  
 
 ## Obter um pesquisador
 
