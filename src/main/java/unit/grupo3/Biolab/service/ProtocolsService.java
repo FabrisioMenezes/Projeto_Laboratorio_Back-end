@@ -63,4 +63,12 @@ public class ProtocolsService {
     public ResponseEntity getProtocols() {
         return ResponseEntity.status(HttpStatus.OK).body(protocolsRepository.findAll());
     }
+
+    public ResponseEntity getProtocolsByMatriculation(Integer matriculation){
+        List<ProtocolsEntity> protocolsMatriculationList = protocolsRepository.getByMatriculation(matriculation);
+        if(protocolsMatriculationList.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiError("Não existe nenhum protocolo com esse registro de matricula!"));
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(protocolsMatriculationList);
+    }
 }

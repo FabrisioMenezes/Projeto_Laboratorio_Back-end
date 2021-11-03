@@ -377,6 +377,11 @@ ______
 
   `int é um número inteiro de 0 a 3: PENDING(0), ANALYSING(1), APPROVED(2), REPROVED(3)`
 
+
+## Pegar os protocolos dos pesquisadores pela matricula
+
+`GET /protocols/matriculation/{matriculation}`
+
 ______
 
   

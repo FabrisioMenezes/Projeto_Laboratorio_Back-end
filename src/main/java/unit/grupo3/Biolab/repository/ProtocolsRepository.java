@@ -11,4 +11,5 @@ import java.util.List;
 public interface ProtocolsRepository extends JpaRepository<ProtocolsEntity, Long> {
     List<ProtocolsEntity> getByStatus(ProtocolsStatus status);
     ArrayList<ProtocolsEntity> findAll();
+    List<ProtocolsEntity> getByMatriculation(Integer matriculation);
 }

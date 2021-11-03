@@ -33,9 +33,14 @@ public class ProtocolsController {
     public ResponseEntity getByStatus(@PathVariable int status) {
         return protocolsService.getProtocolsByStatus(status);
     }
-  
+
+    @GetMapping("/matriculation/{matriculation}")
+    public ResponseEntity getByMatriculation(@PathVariable Integer matriculation) {
+        return protocolsService.getProtocolsByMatriculation(matriculation);
+    }
     @GetMapping
     public ResponseEntity getProtocols() {
         return protocolsService.getProtocols();
     }
+
 }
