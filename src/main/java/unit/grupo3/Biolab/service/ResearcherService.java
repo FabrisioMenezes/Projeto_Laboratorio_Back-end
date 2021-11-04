@@ -24,7 +24,7 @@ public class ResearcherService {
         Optional<ResearcherEntity> researcherEntityOptional = repository.findByEmailAndPassword(email, password);
 
         if (researcherEntityOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.OK).body(researcherEntityOptional.get().getIsPresident());
+            return ResponseEntity.status(HttpStatus.OK).body(researcherEntityOptional.get());
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiError("Pesquisador não encontrado."));
     }
