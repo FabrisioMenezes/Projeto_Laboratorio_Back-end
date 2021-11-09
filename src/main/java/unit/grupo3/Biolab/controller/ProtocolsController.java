@@ -38,9 +38,15 @@ public class ProtocolsController {
     public ResponseEntity getByMatriculation(@PathVariable Integer matriculation) {
         return protocolsService.getProtocolsByMatriculation(matriculation);
     }
+
     @GetMapping
     public ResponseEntity getProtocols() {
         return protocolsService.getProtocols();
+    }
+
+    @GetMapping("/reseacher/{matriculation}")
+    public ResponseEntity getProtocolsByMatriculationReseacher(@PathVariable Integer matriculation) {
+        return protocolsService.getProtocolsByMatriculationReseacher(matriculation);
     }
 
 }

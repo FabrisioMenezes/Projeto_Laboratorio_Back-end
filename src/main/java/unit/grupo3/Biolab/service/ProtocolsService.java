@@ -71,4 +71,17 @@ public class ProtocolsService {
         }
         return ResponseEntity.status(HttpStatus.OK).body(protocolsMatriculationList);
     }
+
+    
+    public  ResponseEntity getProtocolsByMatriculationReseacher(Integer matriculation){
+        List<ProtocolsEntity> protocolsMatriculationReseacherList = protocolsRepository.getByFirstResearcherMatriculation(matriculation);
+        protocolsMatriculationReseacherList.addAll(protocolsRepository.getBySecondResearcherMatriculation(matriculation));
+        protocolsMatriculationReseacherList.addAll(protocolsRepository.getByThirdResearcherMatriculation(matriculation));
+        if(protocolsMatriculationReseacherList.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiError("Não existe nenhum protocolo com esse registro de matricula!"));
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(protocolsMatriculationReseacherList);
+        
+    }
+
 }

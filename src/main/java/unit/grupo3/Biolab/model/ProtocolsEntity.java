@@ -25,6 +25,10 @@ public class ProtocolsEntity {
     private String seemDate;
     private Long speciesId;
     private Integer quantitySpecies;
+    private Integer presidentMatriculation;
+    private Integer firstResearcherMatriculation;
+    private Integer secondResearcherMatriculation;
+    private Integer thirdResearcherMatriculation;
     private Boolean firstSeem;
     private Boolean secondSeem;
     private Boolean thirdSeem;
@@ -33,7 +37,7 @@ public class ProtocolsEntity {
     public ProtocolsEntity() {
     }
 
-    public ProtocolsEntity(String title, Integer matriculation, ProtocolsStatus status, String review, Boolean seemCommission, Boolean seemPresident,String seemDate, Long speciesId, Integer quantitySpecies, Boolean firstSeem, Boolean secondSeem, Boolean thirdSeem, Long areaId) {
+    public ProtocolsEntity(String title, Integer matriculation, ProtocolsStatus status, String review, Boolean seemCommission, Boolean seemPresident,String seemDate, Long speciesId, Integer quantitySpecies,Integer presidentMatriculation,Integer firstReseacherMatriculation,Integer secodenReseacherMatriculation, Integer thirdReseacherMatriculation ,Boolean firstSeem, Boolean secondSeem, Boolean thirdSeem, Long areaId) {
         this.title = title;
         this.matriculation = matriculation;
         this.status = status;
@@ -43,6 +47,10 @@ public class ProtocolsEntity {
         this.seemDate = seemDate;
         this.speciesId = speciesId;
         this.quantitySpecies = quantitySpecies;
+        this.presidentMatriculation = presidentMatriculation;
+        this.firstResearcherMatriculation = firstReseacherMatriculation;
+        this.secondResearcherMatriculation = secodenReseacherMatriculation;
+        this.thirdResearcherMatriculation = thirdReseacherMatriculation;
         this.firstSeem = firstSeem;
         this.secondSeem = secondSeem;
         this.thirdSeem = thirdSeem;
@@ -93,6 +101,21 @@ public class ProtocolsEntity {
         return quantitySpecies;
     }
 
+    public Integer getPresidentMatriculation() {
+        return presidentMatriculation;
+    }
+    public Integer getFirstResearcherMatriculation() {
+        return firstResearcherMatriculation;
+    }
+    
+    public Integer getSecondResearcherMatriculation() {
+        return secondResearcherMatriculation;
+    }
+
+    public Integer getThirdResearcherMatriculation() {
+        return thirdResearcherMatriculation;
+    }
+
     public Boolean getFirstSeem() {
         return firstSeem;
     }
@@ -123,6 +146,9 @@ public class ProtocolsEntity {
                 ", seemDate=" + seemDate +
                 ", speciesId=" + speciesId +
                 ", quantitySpecies=" + quantitySpecies +
+                ", firstReseacherId=" + firstResearcherMatriculation +
+                ", secodenReseacherId=" + secondResearcherMatriculation +
+                ", thirdReseacherId=" + thirdResearcherMatriculation +
                 ", firstSeem=" + firstSeem +
                 ", secondSeem=" + secondSeem +
                 ", thirdSeem=" + thirdSeem +
