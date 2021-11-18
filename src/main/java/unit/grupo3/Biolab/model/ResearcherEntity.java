@@ -32,7 +32,10 @@ public class ResearcherEntity {
         this.matriculation = matriculation;
         this.areaOfInterest = areaOfInterest;
         this.curriculumLink = curriculumLink;
-        this.active = active;
+        if(active == null)
+            this.active = true;
+        else
+            this.active = active;
         this.isPresident = isPresident;
     }
 
