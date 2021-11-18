@@ -484,6 +484,10 @@ ______
 
 `DELETE /researchers/{matriculation}`
 
+
+## Saber se existe um email cadastrado
+
+`GET /reseachers/email/{email}`
 ______
 
   

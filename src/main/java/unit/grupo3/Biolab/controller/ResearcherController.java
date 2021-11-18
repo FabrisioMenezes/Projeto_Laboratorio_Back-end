@@ -48,7 +48,7 @@ public class ResearcherController {
         return researcherService.getActiveResearchers();
     }
 
-    @GetMapping("/{email}")
+    @GetMapping("/email/{email}")
     ResponseEntity getExistsReseacher(@PathVariable String email){
         return researcherService.exitsByEmail(email);
     }
