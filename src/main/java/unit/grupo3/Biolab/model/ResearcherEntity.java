@@ -19,7 +19,7 @@ public class ResearcherEntity {
     private Integer matriculation;
     private String areaOfInterest;
     private String curriculumLink;
-    private Boolean active;
+    private Boolean active = true;
     private Boolean isPresident = false;
 
     public ResearcherEntity() {
@@ -32,10 +32,7 @@ public class ResearcherEntity {
         this.matriculation = matriculation;
         this.areaOfInterest = areaOfInterest;
         this.curriculumLink = curriculumLink;
-        if(active == null)
-            this.active = true;
-        else
-            this.active = active;
+        this.active = active;
         this.isPresident = isPresident;
     }
 

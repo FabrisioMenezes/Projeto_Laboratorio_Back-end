@@ -103,4 +103,12 @@ public class ResearcherService {
         }
         return researcherDTOList;
     }
+
+    public ResponseEntity exitsByEmail(String email){
+
+        boolean existsEmail = repository.existsByEmail(email);
+
+        return ResponseEntity.status(HttpStatus.OK).body(existsEmail);
+    }
+    
 }
