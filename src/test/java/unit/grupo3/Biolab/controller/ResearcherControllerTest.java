@@ -16,7 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import unit.grupo3.Biolab.model.ResearcherEntity;
 
 import static org.hamcrest.Matchers.equalTo;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.hamcrest.Matchers.hasSize;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -59,5 +60,45 @@ public class ResearcherControllerTest {
             .andExpect(status().isBadRequest())
             .andExpect(jsonPath("$.error", equalTo("Email já cadastrado.")))
             .andReturn();
+    }
+
+    @Test
+    void shouldGetRegisteredResearcher() throws Exception {
+        String email = "artur-teste@unit.com";
+        String password = "12345";
+
+        mvc.perform(get("/researchers?email=" + email + "&password=" + password)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.email", equalTo(email)))
+                .andExpect(jsonPath("$.password", equalTo(password)))
+                .andReturn();
+    }
+
+    @Test
+    void shouldHaveErrorWhenTryGetUnregisteredResearcher() throws Exception {
+        String email = "artur-teste-teste@unit.com";
+        String password = "123455";
+
+        mvc.perform(get("/researchers?email=" + email + "&password=" + password)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.error", equalTo("Pesquisador não encontrado.")))
+                .andReturn();
+    }
+
+    @Test
+    void shouldUpdateResearcher() throws Exception {
+        String name = "tutu";
+        ResearcherEntity newResearcher = new ResearcherEntity();
+        newResearcher.setName(name);
+
+        Integer matriculation = 12345;
+
+        mvc.perform(patch("/reseracher/" + matriculation)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(mapper.writeValueAsString(newResearcher)))
+                .andExpect(jsonPath("$.name", equalTo(name)))
+                .andReturn();
     }
 }
