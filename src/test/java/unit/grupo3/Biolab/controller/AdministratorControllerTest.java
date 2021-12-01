@@ -83,5 +83,4 @@ public class AdministratorControllerTest {
                 .andExpect(status().isNotFound())
                 .andReturn();
     }
-
 }
