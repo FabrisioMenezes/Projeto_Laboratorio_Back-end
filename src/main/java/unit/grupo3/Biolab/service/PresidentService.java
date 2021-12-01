@@ -21,7 +21,7 @@ public class PresidentService {
 
         if(existPresident){
             PresidentEntity presidentEntity = repository.getByResearcherId(researcherId);
-
+            
             return ResponseEntity.status(HttpStatus.OK).body(presidentEntity);
         }
 
