@@ -13,7 +13,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
-import unit.grupo3.Biolab.model.ResearcherEntity;
+import unit.grupo3.Biolab.model.AdministratorEntity;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
@@ -27,8 +27,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureJdbc
 @AutoConfigureDataJpa
 @Transactional
-@Sql({"/ResearcherControllerTest.sql"})
-public class ResearcherControllerTest {
+@Sql({"/AdministratorControllerTest.sql"})
+public class AdministratorControllerTest {
 
     @Autowired
     private MockMvc mvc;
@@ -38,11 +38,11 @@ public class ResearcherControllerTest {
     @Test
     void shouldCreateResearcher() throws Exception {
 
-        ResearcherEntity researcherEntity = new ResearcherEntity("ismael2","ismael2@gmail.com","12345123",123452,"teste","teste",true,false);
+        AdministratorEntity administratorEntity = new AdministratorEntity("ismael","ismael","1234",true);
         
-        mvc.perform(post("/researchers")
+        mvc.perform(post("/administrator")
             .contentType(MediaType.APPLICATION_JSON)
-            .content(mapper.writeValueAsString(researcherEntity)))
+            .content(mapper.writeValueAsString(administratorEntity)))
             .andExpect(status().isCreated())
             .andReturn();
     }
@@ -50,54 +50,38 @@ public class ResearcherControllerTest {
     @Test
     void shouldNotCreateResearcherBecauseAlreadyExistEmail() throws Exception {
 
-        ResearcherEntity researcherEntity = new ResearcherEntity("ismael", "ismael@gmail.com",
-                "12345", 12345, "testando", "testando",true, false);
-
-        mvc.perform(post("/researchers")
+        AdministratorEntity administratorEntity = new AdministratorEntity("ismael","ismael@gmail.com","1234",true);
+        
+        mvc.perform(post("/administrator")
             .contentType(MediaType.APPLICATION_JSON)
-            .content(mapper.writeValueAsString(researcherEntity)))
+            .content(mapper.writeValueAsString(administratorEntity)))
             .andExpect(status().isBadRequest())
-            .andExpect(jsonPath("$.error", equalTo("Email já cadastrado.")))
             .andReturn();
     }
 
     @Test
-    void shouldGetRegisteredResearcher() throws Exception {
+    void shouldGetRegisteredAdministrators() throws Exception {
         String email = "ismael@gmail.com";
         String password = "12345";
 
-        mvc.perform(get("/researchers?email=" + email + "&password=" + password)
+        mvc.perform(get("/administrator?email=" + email + "&password=" + password)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.email", equalTo(email)))
                 .andExpect(jsonPath("$.password", equalTo(password)))
                 .andReturn();
+
     }
 
     @Test
-    void shouldHaveErrorWhenTryGetUnregisteredResearcher() throws Exception {
-        String email = "artur-teste-teste@unit.com";
-        String password = "123455";
+    void shouldHaveErrorWhenTryGetUnregisteredAdministrator() throws Exception {
+        String email = "teste@gmail.com";
+        String password = "12345";
 
-        mvc.perform(get("/researchers?email=" + email + "&password=" + password)
-                        .contentType(MediaType.APPLICATION_JSON))
+        mvc.perform(get("/administrator?email=" + email + "&password=" + password)
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound())
-                .andExpect(jsonPath("$.error", equalTo("Pesquisador não encontrado.")))
                 .andReturn();
     }
 
-    @Test
-    void shouldUpdateResearcher() throws Exception {
-        String name = "tutu";
-        ResearcherEntity newResearcher = new ResearcherEntity();
-        newResearcher.setName(name);
-
-        Integer matriculation = 12345;
-
-        mvc.perform(patch("/reseracher/" + matriculation)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(mapper.writeValueAsString(newResearcher)))
-                .andExpect(status().isOk())
-                .andReturn();
-    }
 }

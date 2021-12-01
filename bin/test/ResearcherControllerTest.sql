@@ -1,2 +1,2 @@
-INSERT INTO researcher (id, area_of_interest, curriculum_link, email, matriculation, name, password)
-VALUES (1, 'testando', 'testando@testando.com', 'artur-teste@unit.com', 12345, 'artur', '12345');
+INSERT INTO researcher (id, name, email,password, matriculation, area_of_interest, curriculum_link, active, is_president)
+VALUES (1, 'Ismael','ismael@gmail.com','12345',12345,'teste','teste',true,true);
