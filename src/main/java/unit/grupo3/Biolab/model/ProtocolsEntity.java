@@ -38,23 +38,7 @@ public class ProtocolsEntity {
     }
 
     public ProtocolsEntity(String title, Integer matriculation, ProtocolsStatus status, String review, Boolean seemCommission, Boolean seemPresident,String seemDate, Long speciesId, Integer quantitySpecies,Integer presidentMatriculation,Integer firstReseacherMatriculation,Integer secodenReseacherMatriculation, Integer thirdReseacherMatriculation ,Boolean firstSeem, Boolean secondSeem, Boolean thirdSeem, Long areaId) {
-        this.title = title;
-        this.matriculation = matriculation;
-        this.status = status;
-        this.review = review;
-        this.seemCommission = seemCommission;
-        this.seemPresident = seemPresident;
-        this.seemDate = seemDate;
-        this.speciesId = speciesId;
-        this.quantitySpecies = quantitySpecies;
-        this.presidentMatriculation = presidentMatriculation;
-        this.firstResearcherMatriculation = firstReseacherMatriculation;
-        this.secondResearcherMatriculation = secodenReseacherMatriculation;
-        this.thirdResearcherMatriculation = thirdReseacherMatriculation;
-        this.firstSeem = firstSeem;
-        this.secondSeem = secondSeem;
-        this.thirdSeem = thirdSeem;
-        this.areaId = areaId;
+         this.areaId = areaId;
     }
 
     public Long getId() {

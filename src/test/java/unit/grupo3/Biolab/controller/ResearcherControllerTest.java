@@ -94,7 +94,7 @@ public class ResearcherControllerTest {
 
         Integer matriculation = 12345;
 
-        mvc.perform(patch("/reseracher/" + matriculation)
+        mvc.perform(patch("/researchers/" + matriculation)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(newResearcher)))
                 .andExpect(status().isOk())
